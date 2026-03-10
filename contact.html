@@ -60,31 +60,33 @@
                             <!-- Formsubmit Contact Form -->
                             <form id="contactForm" action="https://formsubmit.co/luiz.g.s.silva@gmail.com"
                                 method="POST">
+                                <input type="hidden" name="_subject" value="New submission from your portfolio!">
+                                <input type="hidden" name="_template" value="table">
                                 <div id="formInputs">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" name="name" type="text"
+                                        <input class="form-control" id="name" name="Full_Name" type="text"
                                             placeholder="Enter your name..." required data-i18n="contact_name_placeholder" />
                                         <label for="name" data-i18n="contact_name_label">Full name</label>
                                         <div class="invalid-feedback" data-i18n="contact_error_name_required">A name is required.</div>
                                     </div>
                                     <!-- Email address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="email" name="email" type="email"
+                                        <input class="form-control" id="email" name="Email_Address" type="email"
                                             placeholder="name@example.com" required data-i18n="contact_email_placeholder" />
                                         <label for="email" data-i18n="contact_email_label">Email address</label>
                                         <div class="invalid-feedback" data-i18n="contact_error_email_required">A valid email is required.</div>
                                     </div>
                                     <!-- Phone number input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="phone" name="phone" type="tel" placeholder="(123) 456-7890"
+                                        <input class="form-control" id="phone" name="Phone_Number" type="tel" placeholder="(123) 456-7890"
                                             required data-i18n="contact_phone_placeholder" />
                                         <label for="phone" data-i18n="contact_phone_label">Phone number</label>
                                         <div class="invalid-feedback" data-i18n="contact_error_phone_required">A phone number is required.</div>
                                     </div>
                                     <!-- Message input-->
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" id="message" name="message"
+                                        <textarea class="form-control" id="message" name="Message"
                                             placeholder="Enter your message here..." style="height: 10rem"
                                             required data-i18n="contact_message_placeholder"></textarea>
                                         <label for="message" data-i18n="contact_message_label">Message</label>
