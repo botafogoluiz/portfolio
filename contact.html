@@ -63,28 +63,28 @@
                                 <div id="formInputs">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="name" type="text"
+                                        <input class="form-control" id="name" name="name" type="text"
                                             placeholder="Enter your name..." required data-i18n="contact_name_placeholder" />
                                         <label for="name" data-i18n="contact_name_label">Full name</label>
                                         <div class="invalid-feedback" data-i18n="contact_error_name_required">A name is required.</div>
                                     </div>
                                     <!-- Email address input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="email" type="email"
+                                        <input class="form-control" id="email" name="email" type="email"
                                             placeholder="name@example.com" required data-i18n="contact_email_placeholder" />
                                         <label for="email" data-i18n="contact_email_label">Email address</label>
                                         <div class="invalid-feedback" data-i18n="contact_error_email_required">A valid email is required.</div>
                                     </div>
                                     <!-- Phone number input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890"
+                                        <input class="form-control" id="phone" name="phone" type="tel" placeholder="(123) 456-7890"
                                             required data-i18n="contact_phone_placeholder" />
                                         <label for="phone" data-i18n="contact_phone_label">Phone number</label>
                                         <div class="invalid-feedback" data-i18n="contact_error_phone_required">A phone number is required.</div>
                                     </div>
                                     <!-- Message input-->
                                     <div class="form-floating mb-3">
-                                        <textarea class="form-control" id="message"
+                                        <textarea class="form-control" id="message" name="message"
                                             placeholder="Enter your message here..." style="height: 10rem"
                                             required data-i18n="contact_message_placeholder"></textarea>
                                         <label for="message" data-i18n="contact_message_label">Message</label>
@@ -148,8 +148,12 @@
                     event.preventDefault();
                     event.stopPropagation();
                 } else {
-                    submitButton.classList.add('disabled');
-                    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Redirecting...';
+                    // Delaying UI update slightly to ensure form submits correctly on all browsers
+                    setTimeout(function() {
+                        submitButton.classList.add('disabled');
+                        submitButton.setAttribute('disabled', 'disabled');
+                        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Redirecting...';
+                    }, 50);
                 }
                 form.classList.add('was-validated');
             });
