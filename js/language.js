@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Determine the default language (English, unless previously saved as PT)
     let currentLanguage = localStorage.getItem('portfolioLanguage') || 'en';
-    
+
     // Function to update the UI texts based on the selected language
     function updateTexts(lang) {
         // Ensure translations are available
@@ -17,18 +17,24 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (dict[key]) {
-                // If it's an input with placeholder
+                // CASE 1: For inputs and textareas, we ONLY change the placeholder
+                // This prevents overwriting the actual typed value (el.value)
                 if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    if (el.hasAttribute('placeholder')) {
-                        el.placeholder = dict[key];
-                    }
-                } else {
+                    el.placeholder = dict[key];
+                }
+                // CASE 2: For labels, we use textContent to be safe
+                // In Bootstrap floating labels, the label is a separate element
+                else if (el.tagName === 'LABEL') {
+                    el.textContent = dict[key];
+                }
+                // CASE 3: For everything else (h1, p, span, div, a)
+                else {
                     // Update innerHTML to allow tags like <br> or &middot;
                     el.innerHTML = dict[key];
                 }
             }
         });
-        
+
         // Update language selector UI if exists
         updateLanguageSelectorUI(lang);
     }
@@ -37,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateLanguageSelectorUI(lang) {
         const btnPT = document.getElementById('btn-lang-pt');
         const btnEN = document.getElementById('btn-lang-en');
-        
+
         if (btnPT && btnEN) {
             if (lang === 'pt') {
                 btnPT.classList.add('fw-bolder', 'text-primary');
@@ -50,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Function to change the language and save to localStorage
-    window.setLanguage = function(lang) {
+    window.setLanguage = function (lang) {
         if (lang === 'pt' || lang === 'en') {
             currentLanguage = lang;
             localStorage.setItem('portfolioLanguage', lang);
